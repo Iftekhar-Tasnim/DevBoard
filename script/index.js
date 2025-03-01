@@ -1,0 +1,77 @@
+const button1 = document.getElementById("complete-button-1");
+const button2 = document.getElementById("complete-button-2");
+const button3 = document.getElementById("complete-button-3");
+const button4 = document.getElementById("complete-button-4");
+const button5 = document.getElementById("complete-button-5");
+const button6 = document.getElementById("complete-button-6");
+
+button1.addEventListener("click", function () {
+  ButtonClicked(button1, "Integrate OpenAI API");
+});
+
+button2.addEventListener("click", function () {
+  ButtonClicked(button2, "Add Dark Mode");
+});
+
+button3.addEventListener("click", function () {
+  ButtonClicked(button3, "Optimize Home Page");
+});
+
+button4.addEventListener("click", function () {
+  ButtonClicked(button4, "Add New Emoji 🤲");
+});
+
+button5.addEventListener("click", function () {
+  ButtonClicked(button5, "Improve Job searching");
+});
+
+button6.addEventListener("click", function () {
+  ButtonClicked(button6, "Fix Mobile Button Issue");
+});
+
+const clearHistoryButton = document.querySelector(
+  ".btn.btn-primary.rounded-lg"
+);
+clearHistoryButton.addEventListener("click", function () {
+  const activityLogContainer = document.getElementById(
+    "activity-log-container"
+  );
+  activityLogContainer.innerHTML = "";
+});
+
+function ButtonClicked(button, taskName) {
+  button.disabled = true;
+  updateCounter("task-assign-count", -1);
+  updateCounter("completed-tasks-count", 1);
+  addActivityLog(taskName);
+  alert("Congratulations, You have completed the task.");
+}
+
+function updateCounter(counterId, change) {
+  const counterElement = document.getElementById(counterId);
+  let count = parseInt(counterElement.textContent);
+  counterElement.textContent = count + change;
+}
+
+function addActivityLog(taskName) {
+  const activityLogContainer = document.getElementById(
+    "activity-log-container"
+  );
+  const logEntry = document.createElement("p");
+  logEntry.className =
+    "text-[16px] poppins h-24 w-auto color-2 text-left content-center px-4 rounded-lg my-5";
+  const formattedTime = formatTime(new Date());
+  logEntry.textContent = `You have Completed The Task ${taskName} at ${formattedTime}`;
+  activityLogContainer.appendChild(logEntry);
+}
+
+function formatTime(date) {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  return `${hours}:${minutes}:${seconds} ${ampm}`;
+}
