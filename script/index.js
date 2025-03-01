@@ -1,3 +1,14 @@
+//color wheel
+
+const themeButton = document.getElementById("theme-btn");
+themeButton.addEventListener("click", function () {
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+  const randomColor = `rgb(${red}, ${green}, ${blue})`;
+  document.body.style.backgroundColor = randomColor;
+});
+
 // assign btn
 
 const button1 = document.getElementById("complete-button-1");
@@ -32,7 +43,6 @@ button6.addEventListener("click", function () {
   ButtonClicked(button6, "Fix Mobile Button Issue");
 });
 
-
 //clear history section 
 const clearHistoryButton = document.querySelector(
   ".btn.btn-primary.rounded-lg"
@@ -44,16 +54,23 @@ clearHistoryButton.addEventListener("click", function () {
   activityLogContainer.innerHTML = "";
 });
 
-
 //btn hidden 
 function ButtonClicked(button, taskName) {
   button.disabled = true;
   updateCounter("task-assign-count", -1);
   updateCounter("completed-tasks-count", 1);
   addActivityLog(taskName);
+
+  // Check if all tasks are completed.
+  const taskAssignCountElement = document.getElementById("task-assign-count");
+  let taskAssignCount = parseInt(taskAssignCountElement.textContent);
+
+  if (taskAssignCount === 0) {
+    alert("You have completed all tasks. Keep Rocking!");
+  }
+
   alert("Congratulations, You have completed the task.");
 }
-
 
 //counter ++
 function updateCounter(counterId, change) {
@@ -74,7 +91,6 @@ function addActivityLog(taskName) {
   logEntry.textContent = `You have Completed The Task ${taskName} at ${formattedTime}`;
   activityLogContainer.appendChild(logEntry);
 }
-
 
 //realtime function
 
