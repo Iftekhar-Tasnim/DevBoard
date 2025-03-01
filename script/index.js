@@ -1,3 +1,5 @@
+// assign btn
+
 const button1 = document.getElementById("complete-button-1");
 const button2 = document.getElementById("complete-button-2");
 const button3 = document.getElementById("complete-button-3");
@@ -5,6 +7,7 @@ const button4 = document.getElementById("complete-button-4");
 const button5 = document.getElementById("complete-button-5");
 const button6 = document.getElementById("complete-button-6");
 
+//btn calling function
 button1.addEventListener("click", function () {
   ButtonClicked(button1, "Integrate OpenAI API");
 });
@@ -29,6 +32,8 @@ button6.addEventListener("click", function () {
   ButtonClicked(button6, "Fix Mobile Button Issue");
 });
 
+
+//clear history section 
 const clearHistoryButton = document.querySelector(
   ".btn.btn-primary.rounded-lg"
 );
@@ -39,6 +44,8 @@ clearHistoryButton.addEventListener("click", function () {
   activityLogContainer.innerHTML = "";
 });
 
+
+//btn hidden 
 function ButtonClicked(button, taskName) {
   button.disabled = true;
   updateCounter("task-assign-count", -1);
@@ -47,12 +54,15 @@ function ButtonClicked(button, taskName) {
   alert("Congratulations, You have completed the task.");
 }
 
+
+//counter ++
 function updateCounter(counterId, change) {
   const counterElement = document.getElementById(counterId);
   let count = parseInt(counterElement.textContent);
   counterElement.textContent = count + change;
 }
 
+//update log
 function addActivityLog(taskName) {
   const activityLogContainer = document.getElementById(
     "activity-log-container"
@@ -65,6 +75,9 @@ function addActivityLog(taskName) {
   activityLogContainer.appendChild(logEntry);
 }
 
+
+//realtime function
+
 function formatTime(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -74,4 +87,40 @@ function formatTime(date) {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   seconds = seconds < 10 ? "0" + seconds : seconds;
   return `${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+//Dynamic Data in title
+
+setInterval(updateDayAndDate, 1000);
+
+function updateDayAndDate() {
+  const now = new Date();
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const currentDay = daysOfWeek[now.getDay()];
+  const currentMonth = months[now.getMonth()];
+  const currentDate = now.getDate();
+  const currentYear = now.getFullYear();
+
+  const formattedDate = `${currentMonth} ${currentDate} ${currentYear}`;
+
+  const currentDayElement = document.getElementById("Current-day");
+  currentDayElement.textContent = `${currentDay},`;
+
+  const currentDateElement = document.getElementById("current-date");
+  currentDateElement.textContent = formattedDate;
 }
