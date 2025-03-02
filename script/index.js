@@ -9,6 +9,18 @@ themeButton.addEventListener("click", function () {
   document.body.style.backgroundColor = randomColor;
 });
 
+
+// page link 
+
+const discoverElement = document.getElementById("Discover");
+  if (discoverElement) {
+    discoverElement.addEventListener("click", function () {
+      window.location.href = "./blog.html";
+    });
+    discoverElement.style.cursor = "pointer";
+  }
+
+
 // assign btn
 
 const button1 = document.getElementById("complete-button-1");
@@ -69,7 +81,7 @@ function ButtonClicked(button, taskName) {
     alert("You have completed all tasks. Keep Rocking!");
   }
 
-  alert("Congratulations, You have completed the task.");
+  alert("Board updated Successfully");
 }
 
 //counter ++
