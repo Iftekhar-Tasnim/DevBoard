@@ -9,16 +9,16 @@ themeButton.addEventListener("click", function () {
   document.body.style.backgroundColor = randomColor;
 });
 
+// page link
 
-// page link 
+const discoverbtn = document.getElementById("Discover");
+if (discoverbtn) {
+  discoverbtn.addEventListener("click", function () {
+    window.location.href = "./blog.html";
+  });
+  discoverbtn.style.cursor = "pointer";
+}
 
-const discoverElement = document.getElementById("Discover");
-  if (discoverElement) {
-    discoverElement.addEventListener("click", function () {
-      window.location.href = "./blog.html";
-    });
-    discoverElement.style.cursor = "pointer";
-  }
 
 
 // assign btn
@@ -55,7 +55,7 @@ button6.addEventListener("click", function () {
   ButtonClicked(button6, "Fix Mobile Button Issue");
 });
 
-//clear history section 
+//clear history section
 const clearHistoryButton = document.querySelector(
   ".btn.btn-primary.rounded-lg"
 );
@@ -66,7 +66,7 @@ clearHistoryButton.addEventListener("click", function () {
   activityLogContainer.innerHTML = "";
 });
 
-//btn hidden 
+//btn hidden
 function ButtonClicked(button, taskName) {
   button.disabled = true;
   updateCounter("task-assign-count", -1);
@@ -78,7 +78,7 @@ function ButtonClicked(button, taskName) {
   let taskAssignCount = parseInt(taskAssignCountElement.textContent);
 
   if (taskAssignCount === 0) {
-    alert("You have completed all tasks. Keep Rocking!");
+    alert("Congrates!!! You have completed all the current task.");
   }
 
   alert("Board updated Successfully");
